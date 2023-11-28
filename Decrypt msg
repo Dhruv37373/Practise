@@ -1,0 +1,57 @@
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args) {
+        String enMsg = "luaxzn vsa filmrh bpm jxoh";
+ 		String keyPhrase = "the greatest game ever played";
+		String[] msg = enMsg.split(" ");
+		String[] key = keyPhrase.split(" ");
+		
+		if(msg.length != key.length){
+		    System.out.println("Invalid Input");   
+		}else{
+		    for(int k=0; k<enMsg.length(); k++){
+		        if(Character.isUpperCase(enMsg.charAt(k))){
+		            System.out.println("capital letter"); 
+		        }
+		    }
+		    
+		    for(int m=0; m<keyPhrase.length(); m++){
+		        if(Character.isUpperCase(keyPhrase.charAt(m))){
+		            System.out.println("capital letter"); 
+		        }
+		    }
+		    
+		    String res = "";
+		    for(int i=0; i<msg.length; i++){
+		        int keyEle = key[key.length-i-1].length();
+		        if(keyEle%2 == 0){
+		            for(int j=0; j<msg[i].length(); j++){
+		                char ch = msg[i].charAt(j);
+		                ch = (char)(ch - keyEle);
+		                if(ch < 'a'){
+		                    ch = (char)(ch + 26);
+		                }
+		                res = res + ch;
+		            }
+		            res = res + " ";
+		        }else{
+		            for(int j=0; j<msg[i].length(); j++){
+		                char ch = msg[i].charAt(j);
+		                ch = (char)(ch + keyEle);
+		                if(ch > 'z'){
+		                    ch = (char)(ch - 26);
+		                }
+		                res = res + ch;
+		            }
+		            res = res + " ";
+		        }
+		        
+		    }
+		    System.out.println(res);
+		}
+		
+		
+	}
+}

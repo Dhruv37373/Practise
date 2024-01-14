@@ -6,3 +6,6 @@
 = MID(A1, SEARCH("<value>", A1) + LEN("<value>"), SEARCH("</string>", A1) - SEARCH("<value>", A1) - LEN("<value>"))
 
 <SerializableDictionaryOfStringString><dict xmlns="http://rfmshome.chevron.com/xml/serialization" xml:space="preserve">     <item>       <key>         <string xmlns="">UserID</string>       </key>       <value>         <string xmlns="">ct\kdvp</string>       </value>     </item>   </dict></SerializableDictionaryOfStringString>
+
+
+= MID(D1, SEARCH("<value>", D1) + LEN("<value>"), SEARCH("</string>", D1, SEARCH("<value>", D1)) - SEARCH("<value>", D1) - LEN("<value>"))

@@ -9,3 +9,6 @@
 
 
 = MID(D1, SEARCH("<value>", D1) + LEN("<value>"), SEARCH("</string>", D1, SEARCH("<value>", D1)) - SEARCH("<value>", D1) - LEN("<value>"))
+
+
+=MID(A1, SEARCH("<string xmlns="">", A1) + LEN("<string xmlns="">"), SEARCH("</string>", A1) - SEARCH("<string xmlns="">", A1) - LEN("<string xmlns="">"))

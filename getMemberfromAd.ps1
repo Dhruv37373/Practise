@@ -1,38 +1,19 @@
-
-
-# Prompt for the AD group name
-$groupName = Read-Host "Enter the name of the AD group:"
-
-# Get members of the specified group
-$groupMembers = Get-ADGroupMember -Identity $groupName
-
-# Check if any members were found
-if ($groupMembers) {
-  # Display group name and its members
-  Write-Host "Group: $($groupName)"
-  $groupMembers | ForEach-Object { Write-Host "  - $($_.Name)" }
-  Write-Host ""  # Add an empty line
-} else {
-  # Inform if the group has no members
-  Write-Host "Group: $($groupName) - No members found"
-  Write-Host ""
-}
-
-
-
-
-# Define an array to store group names
-$adGroupNames = @("Group1", "Group2", "Group3", "...", "Group40")  # Replace with your actual group names
+$adGroupNames = @("gr1","gr2","gr3")  
 
 # Enumerate through each group name
 foreach ($groupName in $adGroupNames) {
-  # Get members of the current group
-  $groupMembers = Get-ADGroupMember -Identity $groupName
+  try{
+    $groupMembers = Get-ADGroupMember -Identity $groupName -Server "<DomainController>" | Sort-Object Name
+  } catch{
+    Write-Host "Error occured: $_"
+    continue
+  }
+ # $groupMembers = Get-ADGroupMember -Identity $groupName -Server "<DomainController>" | Sort-Object Name
 
   # Check if any members were found
   if ($groupMembers) {
     # Display group name and its members
-    Write-Host "Group: $($groupName)"
+    Write-Host "Group: $($groupName)--------------------------------------------------------------"
     $groupMembers | ForEach-Object { Write-Host "  - $($_.Name)" }
     Write-Host ""  # Add an empty line between groups
   } else {
@@ -41,4 +22,3 @@ foreach ($groupName in $adGroupNames) {
     Write-Host ""
   }
 }
-
